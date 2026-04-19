@@ -1,0 +1,31 @@
+name: test project
+on:
+    push:
+        branches:
+            - main
+            - test
+    pull_request:
+        branches:
+            - main
+            - test
+job:
+    build:
+        env:
+            short_sha: ${{ github_sha | cut -c 1-7}}
+        runs-on: ubuntu-latest
+        steps:
+           - name: checkout
+             uses: actions/checkout@4
+           - name: remove old build
+             run: |
+                 rm -f chumaedeogu/test:$short_sha || true
+                 rm -f chumaedeogu/test:latest || true
+             shell: bash
+           - name: build and push docker image
+             uses: docker/build-push-action@v3 
+             with:
+                context: .
+                push: true
+                tags: chumaedeogu/test:$short_sha, chumaedeogu/test:latest           
+
+             -
