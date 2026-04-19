@@ -20,8 +20,8 @@ jobs:
 
       - name: Remove old images
         run: |
-          docker rmi chumaedeogu/test:${{ steps.vars.outputs.short_sha }} || true
-          docker rmi chumaedeogu/test:latest || true
+          docker rmi edeogupc/test:${{ steps.vars.outputs.short_sha }} || true
+          docker rmi edeogupc/test:latest || true
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
