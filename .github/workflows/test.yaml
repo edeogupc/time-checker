@@ -24,7 +24,7 @@ jobs:
           docker rmi edeogupc/test:latest || true
 
       - name: Login to DockerHub
-        run: echo "${{ secrets.USER_TOKEN }}" | docker login - u "${{ secrets.USER_NAME }}" --passwd-stdin
+        run: echo "${{ secrets.USER_TOKEN }}" | docker login -u "${{ secrets.USER_NAME }}" --password-stdin
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
