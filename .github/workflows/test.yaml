@@ -20,7 +20,6 @@ job:
              run: |
                  rm -f chumaedeogu/test:$short_sha || true
                  rm -f chumaedeogu/test:latest || true
-             
            - name: build and push docker image
              uses: docker/build-push-action@v3 
              with:
